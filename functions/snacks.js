@@ -18,8 +18,14 @@ function average(numbers) {
   }, 0) / numbers.length;
 }
 
+function isPalindrome(string) {
+  const reversedString = string.split('').reverse().join('');
+  return string.trim().toLowerCase() === reversedString.trim().toLowerCase();
+}
+
 module.exports = {
   getInitials,
   createSlug,
-  average
+  average,
+  isPalindrome
 }
