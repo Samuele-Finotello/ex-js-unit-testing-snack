@@ -26,9 +26,26 @@ function isPalindrome(string) {
   return string.trim().toLowerCase() === reversedString.trim().toLowerCase();
 }
 
+function findPostById(array, id) {
+  if (isNaN(id)) {
+    throw new Error('id deve contenere un numero che sia contenuto nell\'array')
+  }
+  array.forEach(elem => {
+    if (
+      elem.id === undefined ||
+      elem.title === undefined ||
+      elem.slug === undefined
+    ) {
+      throw new Error('Ogni elemento deve avere le proprità id, title e slug valide')
+    }
+  })
+  return array.find(elem => elem.id === parseInt(id)) || null;
+}
+
 module.exports = {
   getInitials,
   createSlug,
   average,
-  isPalindrome
+  isPalindrome,
+  findPostById
 }
