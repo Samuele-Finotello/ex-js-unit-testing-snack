@@ -7,7 +7,19 @@ function createSlug(string) {
   return string.toLowerCase();
 }
 
+function average(numbers) {
+  numbers.forEach(num => {
+    if (isNaN(num)) {
+      throw new Error('L\'array deve contenere solo numeri')
+    }
+  });
+  return numbers.reduce((acc, num) => {
+    return acc + num;
+  }, 0) / numbers.length;
+}
+
 module.exports = {
   getInitials,
-  createSlug
+  createSlug,
+  average
 }
