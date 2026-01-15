@@ -42,10 +42,21 @@ function findPostById(array, id) {
   return array.find(elem => elem.id === parseInt(id)) || null;
 }
 
+function addPost(array, newElem) {
+  return array.push(newElem)
+}
+
+function removePost(array, idRemovedElem) {
+  const postId = array.findIndex(elem => elem.id === idRemovedElem)
+  return array.splice(postId, 1)
+}
+
 module.exports = {
   getInitials,
   createSlug,
   average,
   isPalindrome,
-  findPostById
+  findPostById,
+  addPost,
+  removePost
 }

@@ -1,4 +1,30 @@
-const { getInitials, createSlug, average, isPalindrome, findPostById } = require('../functions/snacks')
+const { getInitials, createSlug, average, isPalindrome, findPostById, addPost, removePost } = require('../functions/snacks')
+
+let posts;
+
+beforeEach(() => {
+  posts = [
+    {
+      id: 1,
+      title: 'Montagna',
+      slug: 'montagna'
+    },
+    {
+      id: 2,
+      title: 'Mare',
+      slug: 'mare'
+    },
+    {
+      id: 3,
+      title: 'Viaggio Londra',
+      slug: 'viaggio-londra'
+    }
+  ]
+})
+
+afterEach(() => {
+  posts = [];
+})
 
 describe('Manipolazione di stringhe', () => {
 
@@ -27,24 +53,6 @@ describe('Operazioni su array', () => {
     expect(average([0, 0, 0])).toBe(0.00)
     expect(() => average([5, 'ciao'])).toThrow()
   })
-
-  const posts = [
-    {
-      id: 1,
-      title: 'Montagna',
-      slug: 'montagna'
-    },
-    {
-      id: 2,
-      title: 'Mare',
-      slug: 'mare'
-    },
-    {
-      id: 3,
-      title: 'Viaggio Londra',
-      slug: 'viaggio-londra'
-    }
-  ]
 
   // SNACK 7
   test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id.', () => {
@@ -86,4 +94,16 @@ describe('Generazione di slug', () => {
     expect(() => createSlug(null)).toThrow()
   })
 
+})
+
+// SNACK 8 (BONUS)
+
+test('Dopo aver aggiunto un post con la funzione addPost, l\'array posts deve contenere un elemento in più.', () => {
+  addPost(posts, { id: 4, title: 'Viaggio Roma', slug: 'viaggio-roma' })
+  expect(posts).toHaveLength(4)
+})
+
+test('Dopo aver rimosso un post con la funzione removePost, l\'array posts deve contenere un elemento in meno.', () => {
+  removePost(posts, 1)
+  expect(posts).toHaveLength(2)
 })
