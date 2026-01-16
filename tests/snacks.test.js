@@ -112,4 +112,11 @@ describe('Generazione di slug', () => {
     expect(() => createSlug(null)).toThrow()
   })
 
+  // SNACK 10 (BONUS)
+  test('Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già.', () => {
+    expect(createSlug('Viaggio Londra', posts)).toBe('viaggio-londra-1')
+    addPost(posts, { id: 4, title: 'Mare', slug: createSlug('Mare', posts) })
+    expect(posts[posts.length - 1].slug).toBe('mare-1')
+  })
+
 })

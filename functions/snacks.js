@@ -3,11 +3,19 @@ function getInitials(fullName) {
   return `${name[0]}${surname[0]}`;
 }
 
-function createSlug(string) {
+function createSlug(string, array) {
   if (!string.trim() || !string) {
     throw new Error('Stringa vuota o non valida')
   }
-  return string.toLowerCase().replaceAll(' ', '-');
+  let slug = string.toLowerCase().replaceAll(' ', '-');
+  if (array) {
+    for (i = 0; i < array.length; i++) {
+      if (array[i].slug === slug) {
+        return slug + '-1';
+      }
+    }
+  }
+  return slug;
 }
 
 function average(numbers) {
