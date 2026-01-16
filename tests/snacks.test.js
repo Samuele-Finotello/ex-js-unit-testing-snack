@@ -71,6 +71,24 @@ describe('Operazioni su array', () => {
     expect(findPostById(posts, 5)).toBeNull()
   })
 
+  // SNACK 8 (BONUS)
+
+  test('Dopo aver aggiunto un post con la funzione addPost, l\'array posts deve contenere un elemento in più.', () => {
+    addPost(posts, { id: 4, title: 'Viaggio Roma', slug: 'viaggio-roma' })
+    expect(posts).toHaveLength(4)
+  })
+
+  test('Dopo aver rimosso un post con la funzione removePost, l\'array posts deve contenere un elemento in meno.', () => {
+    removePost(posts, 1)
+    expect(posts).toHaveLength(2)
+  })
+
+  // SNACK 9 (BONUS)
+  test('Se si tenta di aggiungere un post con un id o uno slug già esistente, la funzione addPost deve lanciare un errore.', () => {
+    expect(() => addPost(posts, { id: 3, title: 'Viaggio Napoli', slug: 'viaggio-napoli' })).toThrow('Id già esistente')
+    expect(() => addPost(posts, { id: 4, title: 'Spiaggia', slug: 'mare' })).toThrow('Slug già esistente')
+  })
+
 })
 
 describe('Generazione di slug', () => {
@@ -94,16 +112,4 @@ describe('Generazione di slug', () => {
     expect(() => createSlug(null)).toThrow()
   })
 
-})
-
-// SNACK 8 (BONUS)
-
-test('Dopo aver aggiunto un post con la funzione addPost, l\'array posts deve contenere un elemento in più.', () => {
-  addPost(posts, { id: 4, title: 'Viaggio Roma', slug: 'viaggio-roma' })
-  expect(posts).toHaveLength(4)
-})
-
-test('Dopo aver rimosso un post con la funzione removePost, l\'array posts deve contenere un elemento in meno.', () => {
-  removePost(posts, 1)
-  expect(posts).toHaveLength(2)
 })

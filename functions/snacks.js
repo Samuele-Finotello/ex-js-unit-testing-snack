@@ -43,6 +43,14 @@ function findPostById(array, id) {
 }
 
 function addPost(array, newElem) {
+  array.forEach(elem => {
+    if (elem.id === newElem.id) {
+      throw new Error('Id già esistente')
+    }
+    if (elem.slug === newElem.slug) {
+      throw new Error('Slug già esistente')
+    }
+  })
   return array.push(newElem)
 }
 
